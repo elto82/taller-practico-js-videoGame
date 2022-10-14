@@ -29,15 +29,23 @@ function startGame() {
   game.font = elementsSize + "px Roboto";
   game.textAlign = "end";
 
-  const map = maps[1];
-  const mapRows = map.trim().split('\n');
-  const mapRowCols = mapRows.map(row => row.trim().split(''));
-  console.log({map,mapRows, mapRowCols});
+  const map = maps[0];
+  const mapRows = map.trim().split("\n");
+  const mapRowCols = mapRows.map((row) => row.trim().split(""));
+  console.log({ map, mapRows, mapRowCols });
 
-  for (let row = 1; row <= 10; row++) {
+  /*   for (let row = 1; row <= 10; row++) {
     for (let col = 1; col <= 10; col++) {
       game.fillText(emojis[mapRowCols[row - 1][col - 1]],
         elementsSize * col, elementsSize * row);      
     }
-  }
+  } */
+  mapRowCols.forEach((row, rowI) => {
+    row.forEach((col, colI) => {
+      const emoji = emojis[col];
+      const posX = elementsSize * (colI + 1);
+      const posY = elementsSize * (rowI + 1);
+      game.fillText(emoji, posX, posY);
+    });
+  });
 }
