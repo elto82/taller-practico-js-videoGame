@@ -1,5 +1,9 @@
 const canvas = document.querySelector("#game");
 const game = canvas.getContext("2d");
+const btonUp = document.querySelector('#up');
+const btonLeft = document.querySelector('#left');
+const btonRight = document.querySelector('#right');
+const btonDown = document.querySelector('#down');
 
 let canvasSize;
 let elementsSize;
@@ -49,3 +53,31 @@ function startGame() {
     });
   });
 }
+
+window.addEventListener('keydown', moveByKeys);
+btonUp.addEventListener('click', moveUp);
+btonLeft.addEventListener('click', moveLeft);
+btonRight.addEventListener('click', moveRight);
+btonDown.addEventListener('click', moveDown);
+
+function moveByKeys(event){
+  //console.log(event);
+  if (event.key == 'ArrowUp') moveUp();
+  if (event.key == 'ArrowLeft') moveLeft();
+  if (event.key == 'ArrowRight') moveRight();
+  if (event.key == 'ArrowDown') moveDown();
+}
+
+function moveUp(){
+  console.log('arriba');
+}
+function moveLeft(){
+  console.log('izquierda');
+}
+function moveRight(){
+  console.log('derecha');
+}
+function moveDown(){
+  console.log('abajo');
+}
+
