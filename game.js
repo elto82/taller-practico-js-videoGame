@@ -91,24 +91,32 @@ function moveByKeys(event){
   if (event.key == 'ArrowDown') moveDown();
 }
 
-function moveUp(){
-  console.log('arriba');
-  playerPosition.y -= elementsSize
-  startGame();
+function moveUp() {
+  //console.log('arriba');
+  if (!(playerPosition.y - elementsSize < elementsSize)) {
+    playerPosition.y -= elementsSize;
+    startGame();
+  } 
 }
 function moveLeft(){
-  console.log('izquierda');
-  playerPosition.x -= elementsSize
-  startGame();
+  //console.log('izquierda');
+  if(!(playerPosition.x - elementsSize < elementsSize)){
+    playerPosition.x -= elementsSize
+    startGame();
+  } 
 }
 function moveRight(){
-  console.log('derecha');
-  playerPosition.x += elementsSize
-  startGame();
+  //console.log('derecha');
+  if(!(playerPosition.x + elementsSize > canvasSize)){
+    playerPosition.x += elementsSize
+    startGame();
+  } 
 }
 function moveDown(){
-  console.log('abajo');
-  playerPosition.y += elementsSize
-  startGame();
+  //console.log('abajo');
+  if(!(playerPosition.y + elementsSize > canvasSize)){
+    playerPosition.y += elementsSize
+    startGame();
+  } 
 }
 
