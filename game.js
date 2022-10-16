@@ -24,6 +24,8 @@ let level = 0;
 
 let lives = 3;
 
+const spanLives = document.querySelector('#lives')
+
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
 
@@ -59,6 +61,8 @@ function startGame() {
   const mapRows = map.trim().split("\n");
   const mapRowCols = mapRows.map((row) => row.trim().split(""));
   console.log({ map, mapRows, mapRowCols });
+
+  showLives();
 
   enemyPositions = []
   game.clearRect(0,0,canvasSize,canvasSize)
@@ -146,6 +150,12 @@ function levelFail(){
   playerPosition.x = undefined;
   playerPosition.y = undefined;
   startGame();
+}
+
+function showLives(){
+const heartsArray = Array(lives).fill(emojis['HEART'])
+
+  spanLives.innerHTML = heartsArray.join('');
 }
 
 window.addEventListener('keydown', moveByKeys);
