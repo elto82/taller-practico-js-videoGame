@@ -20,6 +20,8 @@ const giftPosition = {
 
 let enemyPositions = []
 
+let level = 0;
+
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
 
@@ -45,7 +47,13 @@ function startGame() {
   game.font = elementsSize + "px Roboto";
   game.textAlign = "end";
 
-  const map = maps[0];
+  const map = maps[level];
+
+  if(!map){
+    gameWin();
+    return;
+  }
+
   const mapRows = map.trim().split("\n");
   const mapRowCols = mapRows.map((row) => row.trim().split(""));
   console.log({ map, mapRows, mapRowCols });
@@ -53,12 +61,13 @@ function startGame() {
   enemyPositions = []
   game.clearRect(0,0,canvasSize,canvasSize)
 
-  /*   for (let row = 1; row <= 10; row++) {
+  /*   for (let row = 1; row <= 10; row++) {    
     for (let col = 1; col <= 10; col++) {
       game.fillText(emojis[mapRowCols[row - 1][col - 1]],
         elementsSize * col, elementsSize * row);      
     }
   } */
+
   mapRowCols.forEach((row, rowI) => {
     row.forEach((col, colI) => {
       const emoji = emojis[col];
@@ -95,8 +104,10 @@ function movePlayer() {
   const giftCollisionY =
     playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
   const giftCollision = giftCollisionX && giftCollisionY;
+
   if (giftCollision) {
-    console.log("hay colision para subir de nivel ");
+    //console.log("hay colision para subir de nivel ");
+    levelWin()
   }
 
   const enemyCollision = enemyPositions.find(enemy => {
@@ -110,6 +121,16 @@ function movePlayer() {
   }
 
   game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
+}
+
+function levelWin() {
+  console.log('subiste de nivel');
+  level++;
+  startGame();
+}
+
+function gameWin(){
+  console.log('terminaste el juego!');
 }
 
 window.addEventListener('keydown', moveByKeys);
