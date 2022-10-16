@@ -22,6 +22,8 @@ let enemyPositions = []
 
 let level = 0;
 
+let lives = 3;
+
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
 
@@ -117,7 +119,7 @@ function movePlayer() {
   });
 
   if(enemyCollision){
-    console.log('chocaste');
+    levelFail();
   }
 
   game.fillText(emojis["PLAYER"], playerPosition.x, playerPosition.y);
@@ -131,6 +133,19 @@ function levelWin() {
 
 function gameWin(){
   console.log('terminaste el juego!');
+}
+
+function levelFail(){
+  console.log('chocaste');
+  lives--;
+
+  if(lives <= 0){    
+    level = 0;   
+    lives = 3; 
+  }
+  playerPosition.x = undefined;
+  playerPosition.y = undefined;
+  startGame();
 }
 
 window.addEventListener('keydown', moveByKeys);
