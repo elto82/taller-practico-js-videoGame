@@ -33,8 +33,15 @@ let timeInterval;
 const spanRecord = document.querySelector('#record');
 const pResult = document.querySelector('#result')
 
+const reset_button = document.querySelector('#reset_button');
+reset_button.addEventListener('click', resetGame);
+
 window.addEventListener("load", setCanvasSize);
 window.addEventListener("resize", setCanvasSize);
+
+function resetGame() {
+  location.reload();
+}
 
 function setCanvasSize() {
   //game.fillRect(0,0,100,100);
